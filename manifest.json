@@ -1,0 +1,7 @@
+{
+  "name": "demo",
+  "short_name": "demo",
+  "description": "demo aplication for comercial and learning purposes",
+  "start_url": "/",
+  "display": "standalone"
+}
