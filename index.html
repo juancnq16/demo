@@ -13,8 +13,92 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module" src="/src/demo-app/demo-app.js" crossorigin></script>
+    <style>
+      .gridBox{
+        display: grid;
+        /*grid-template-columns: 2fr 1fr;*/
+        grid-template-columns:repeat(3, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 5px;
+      }
+      .gridBox > div{
+        background-color: #eee;
+        padding: 1em;
+      }
+      .gridBox > div:nth-child(odd){
+        background-color: #ddd;
+      }
+      .wideSon {
+        grid-column: 1/3;
+      }
+      .largeSon{
+        grid-column: 2/4;
+      }
+      .boxa{
+        grid-row: 1/3;
+        background-image: url("resources/loly1.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition-duration: 1s;
+      }
+      .boxa:hover{
+        background-image: url("resources/loly2.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .boxb{
+        grid-column: 1/3;
+        grid-row: 1/3;
+        background: none;
+        background-image: url("resources/loly2.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition-duration: 0.6s;
+      }
+      .example{
+        visibility: hidden;
+        font-size: 50px;
+        font-weight: 900;
+        color: black;
+      }
+      .boxb:hover .example{
+        visibility: visible;
+      }
+      .boxb:hover{
+        background-image: url("resources/loly1.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      
+    </style>
   </head>
   <body>
-    <demo-app></demo-app>
+    <div class="gridBox">
+      <div class="boxb" id = "caja">
+        <p class = "example">dfsghjkda</p>
+      </div>
+      <div class="boxa">
+      </div>
+      <div class="largeSon">
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+    </div>
   </body>
 </html>
