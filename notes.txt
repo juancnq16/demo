@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>demo</title>
+    <meta name="description" content="demo aplication for comercial and learning purposes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module" src="/src/demo-app/personal-grid.js" crossorigin></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+  </head>
+  <body>
+    
+    <personal-grid ></personal-grid>
+  </body>
+</html>
+<div class="gridBox">
+      <div class="boxb" >
+        
+        <div class="shadowb">
+          <p class = "example">dfsghjkda</p>
+        </div> 
+      </div>
+      <div class="boxa">
+      </div>
+      <div class="largeSon">
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      <div>
+        main layout
+        asdf
+      </div>
+      
+    </div>
+    <div id = "mapid" style="height: 180px;">
+    </div>
+    <script>
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+          maxZoom: 18,
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1
+        }).addTo(mymap);
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+          popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+        }
+
+        mymap.on('click', onMapClick);
+
+    </script>
+    <style>
+      .gridBox{
+        display: grid;
+        /*grid-template-columns: 2fr 1fr;*/
+        grid-template-columns:repeat(3, 1fr);
+        grid-auto-rows: 50vh;
+        grid-gap: 5px;
+      }
+      .gridBox > div{
+        background-color: #eee;
+        padding: 1em;
+      }
+      .gridBox > div:nth-child(odd){
+        background-color: #ddd;
+      }
+      .wideSon {
+        grid-column: 1/3;
+      }
+      .largeSon{
+        grid-column: 2/4;
+      }
+      .boxa{
+        /*grid-row: 1/3;*/
+        background-image: url("resources/loly1.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition-duration: 1s;
+      }
+      .boxa:hover{
+        background-image: url("resources/loly2.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      div.boxb{
+        /*grid-column: 1/3;*/
+        /*grid-row: 1/3;*/
+        background-image: url("resources/loly2.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition-duration: 0.6s;
+        overflow: hidden;
+      }
+      div.shadowb{
+        visibility: hidden;
+        float:left;    
+        /*box-sizing: border-box;*/
+        width: 120%;
+        height: 120%;
+        margin: -20px;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .example{
+        padding: 20px;
+        color: white;
+        font: 18px Arial, sans-serif;;
+      }
+      .boxb:hover .shadowb{
+        visibility: visible;
+      }
+      .boxb:hover{
+        background-image: url("resources/loly1.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      
+    </style>

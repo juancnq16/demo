@@ -1,5 +1,4 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 /**
  * @customElement
  * @polymer
@@ -11,8 +10,16 @@ class DemoApp extends PolymerElement {
         :host {
           display: block;
         }
+        .div{
+          background-color:#2A1E5C;
+          color:white;
+        }
+        .box{
+          background-color:#2A1E5C;
+          color:white;
+        }
       </style>
-      <h2>Hello [[prop1]]!</h2>
+      <div class="box"">sbiduvnsdsnviosd</div>
     `;
   }
   static get properties() {
@@ -23,6 +30,16 @@ class DemoApp extends PolymerElement {
       }
     };
   }
+  ready() {
+    super.ready();
+    console.log('setting image');
+    import('./demo-app.js');
+    //document.documentElement.style.setProperty('--colore', "red")
+    //document.documentElement.style.setProperty('--doge', "url('/styles/resources/loly1.jpeg')")
+    //var dog = url("resources/loly1.jpeg");
+    //var dog = URL(dog);
+    //console.log(dog)
+}
 }
 
 window.customElements.define('demo-app', DemoApp);
