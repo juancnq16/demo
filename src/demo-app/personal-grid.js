@@ -1,4 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import "@polymer/polymer/lib/elements/dom-repeat.js";
 /**
  * @customElement
  * @polymer
@@ -7,124 +8,19 @@ class PersonalGrid extends PolymerElement {
   static get template() {
     return html`
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <style>
-        :host {
-            background-color:#2A1E5C;
-        }
-        .barra{
-            height: 12%;
-            width: 100%;
-        } 
-        .barra > p{
-            font-family: 'Roboto Condensed', sans-serif;
-            font-size: 6vh;
-            margin: 18px;
-            color:white;
-        }
-        .gridBox{
-            height: 84.6%;
-            display: grid;
-            background-color:black;
-            /*grid-template-columns: 2fr 1fr;*/
-            grid-template-columns:repeat(10, 1fr);
-            grid-auto-rows: 15%;
-            grid-gap: 18px;
-        }
-        .cuadro:hover{
-          background-color:white;
-        }
-        :host{
-          --doge:url("/styles/resources/loly1.jpeg");
-        }
-        .boxa{
-            /*grid-row: 1/3;*/
-            background-image: var(--doge);
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            transition-duration: 1s;
-            overflow: hidden;
-        }
-        .boxa:hover .shadowb{
-          visibility: visible;
-        }
-        .shadowb{
-          visibility: hidden;
-          float:left;    
-          width: 120%;
-          height: 120%;
-          margin: -20px;
-          background: rgba(0, 0, 0, 0.4);
-        }
-        .boxc{
-          background-image:var(--doge) ;
-        }
-      </style>
+    <link rel="stylesheet" href="../styles/shadowBox.css">
         <div class = "barra" >
-            <p on-mouseover="notifier">COLORES</p>
+            <p style="display:inline-block;" on-mouseover="notifier">COLORES</p>
+            <button class="button" on-click="testHandler">BOTON 1</button>
+            <p style="display:inline-block; font-size:1.5vw;">
+                HOLA, pasa por encima del letrero para comprobar
+                U oprime el botón para saltar de nivel
+            </p>
         </div>
           <div class = "gridBox" id = "tablero">
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#FFFECB"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#FFFECB"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#FFFECB"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#FFFECB"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#FFFECB"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FEA82F"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
-              <dog-box color1="#FE4A49"></dog-box>
-              <dog-box color1="#FFD002"></dog-box>
-              <dog-box color1="#423E3B"></dog-box>
-              <dog-box color1="#2A1E5C"></dog-box>
+              <template is="dom-repeat" items=[[colors]] as="color" id="template">
+                <dog-box color="[[color]]"></dog-box>
+              </template>
           </div>
     `;
   }
@@ -133,6 +29,10 @@ class PersonalGrid extends PolymerElement {
       colors: {
         type: Array,
         value: ['#2A1E5C','#FE4A49','#FEA82F','#FFD002','#FFFECB','#423E3B' ]
+      },
+      percentages:{
+        type: Array,
+        value:['33%','24%',"20%"]
       },
       cur:{
         type: Number,
@@ -161,6 +61,17 @@ class PersonalGrid extends PolymerElement {
       color6:{
         type: String,
         value: '#423E3B'
+      },
+      rows:{
+        type: Number,
+        value:4
+      },
+      col:{
+        type: Number,
+        value:0
+      },
+      time:{
+        type: Date
       }
     };
   }
@@ -168,6 +79,7 @@ class PersonalGrid extends PolymerElement {
         super.ready();
         console.log('setting image');
         import('./dog-box.js');
+        this.time = Date.now();
         //document.documentElement.style.setProperty('--colore', "red")
         //document.documentElement.style.setProperty('--doge', "url('/styles/resources/loly1.jpeg')")
         //var dog = url("resources/loly1.jpeg");
@@ -188,46 +100,52 @@ class PersonalGrid extends PolymerElement {
       this.color1=this.colors[this.cur%6];
       this.cur ++;
     }
-    set1(e){
-      console.log(e);
-      this.color1=this.colors[this.cur%6];
-      this.cur ++;
-    }
-    set2(){
-      this.color2=this.colors[this.cur%6];
-      this.cur ++;
-    }
-    set3(){
-      this.color3=this.colors[this.cur%6];
-      this.cur ++;
-    }
-    set4(){
-      this.color4=this.colors[this.cur%6];
-      this.cur ++;
-    }
-    set5(){
-      this.color5=this.colors[this.cur%6];
-      this.cur ++;
-    }
-    set6(){
-      this.color6=this.colors[this.cur%6];
-      this.cur ++;
-    }
     testHandler(){
-      console.log("WORKING");
+      document.documentElement.style.setProperty('--rows', this.rows);
+      this.incrementador(2+this.col);
+      if(this.rows%5==0){
+        document.documentElement.style.setProperty('--col', this.percentages[this.col]);
+        this.incrementador(this.rows);
+        this.col++;
+      }
+      this.rows++;
+    }
+    incrementador(columnas){
+      for (let index = 0; index < columnas; index++) {
+        this.colors.push(this.colors[Math.floor(Math.random() * this.colors.length)]);  
+      }
+      this.randomizer();
+      this.$.template.render();
+      this.time=Date.now();
     }
     notifier(){
-      for (let i = 0;i<this.$.tablero.childNodes.length;i++){
-        try {
-          console.log(this.$.tablero.childNodes[1].color1);
-          return 0;
-        } catch (error) {
-          console.log("ez")
-        }
-        
+      let squares = [];
+      for (let i = 0;i<this.$.tablero.childNodes.length-2;i++){
+        //console.log("in bucle: ", i);
+          if(String(this.$.tablero.childNodes[i])=="[object HTMLElement]"){
+            //console.log(this.$.tablero.childNodes[i])
+            squares.push(this.$.tablero.childNodes[i].color);
+          }
+      }
+      const allEqual = arr => arr.every( v => v === arr[0] );
+      console.log(squares);
+      if(allEqual(squares)){
+        var now = Date.now();
+        let deltime = now-this.time;
+        deltime=deltime/1000;
+        console.log("lastone: ", deltime);
+        alert("NIVEL SUPERADO!!! \n su tiempo: "+deltime);
+        this.testHandler();
       }
       //console.log(this.$.tablero.childNodes.length);
       //console.log(this.$.tablero.childNodes[1].style.backgroundColor);
+    }
+    randomizer(){
+      for (let i = 0;i<this.$.tablero.childNodes.length-2;i++){
+          if(String(this.$.tablero.childNodes[i])=="[object HTMLElement]"){
+            this.$.tablero.childNodes[i].randomize();
+          }
+      }
     }
 }
 
@@ -241,7 +159,10 @@ window.customElements.define('personal-grid', PersonalGrid);
             </div>
  * 
  * 
- * 
+ * <template is="dom-repeat" items=[[coleccion]] as="pais">
+				  <option value="[[pais]]">[[pais]]</option>
+			  </template>
+import "../../node_modules/@polymer/polymer/lib/elements/dom-repeat.js";
  * 
  * 
  * 

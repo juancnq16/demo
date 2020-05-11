@@ -13,7 +13,7 @@ class DogBox extends PolymerElement {
                 height: 100%;
             }
         </style>
-        <div style="background-color:[[color1]];height: 100%;" on-mouseover="set1">[[color1]]</div>
+        <div style="background-color:[[color]];height: 100%;" on-mouseover="set">[[color1]]</div>
     `;
   }
   static get properties() {
@@ -22,7 +22,7 @@ class DogBox extends PolymerElement {
             type: Array,
             value: ['#2A1E5C','#FE4A49','#FEA82F','#FFD002','#FFFECB','#423E3B' ]
         },
-        color1:{
+        color:{
             type: String,
             value: 'asdf'
         },
@@ -34,7 +34,7 @@ class DogBox extends PolymerElement {
   }
   ready(){
     super.ready();
-        switch (this.color1) {
+        switch (this.color) {
             case '#2A1E5C':
                 this.cur=0;
                 break;
@@ -58,13 +58,14 @@ class DogBox extends PolymerElement {
                 break;
         }
   }
-  set1(e){
-    
-    this.color1=this.colors[this.cur%6];
-    console.log(this.cur);
+  set(){
+    this.color=this.colors[this.cur%6];
     this.cur ++;
   }
-  
+  randomize(){
+    this.cur=Math.floor(Math.random() * 6);
+    this.color=this.colors[this.cur]; 
+  }
 }
 
 window.customElements.define('dog-box', DogBox);
